@@ -1,59 +1,174 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🏪 Pyme360 POS
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Sistema de Punto de Venta (POS) completo diseñado específicamente para pequeñas y medianas empresas. Desarrollado con Laravel, ofrece una solución moderna, intuitiva y eficiente para la gestión de ventas, inventario y reportes.
 
-## About Laravel
+![Laravel](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=flat&logo=laravel&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=flat&logo=php&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📋 Descripción
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Pyme360 POS es una aplicación web que permite gestionar de manera integral las operaciones diarias de un negocio, desde el registro de productos hasta la generación de reportes de ventas. Diseñado pensando en la facilidad de uso y la eficiencia operativa.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## ✨ Características Principales
 
-## Learning Laravel
+-   🛒 **Gestión de Ventas**: Interfaz intuitiva para procesar ventas rápidamente
+-   📦 **Control de Inventario**: Gestión completa de productos y stock
+-   👥 **Administración de Clientes**: Base de datos de clientes con historial de compras
+-   📊 **Dashboard Analítico**: Visualización de métricas clave del negocio
+-   🧾 **Generación de Facturas**: Creación automática de documentos de venta
+-   📈 **Reportes Detallados**: Informes de ventas, productos más vendidos y más
+-   🔐 **Sistema de Autenticación**: Control de acceso seguro para usuarios
+-   💰 **Múltiples Métodos de Pago**: Efectivo, tarjeta, transferencia, etc.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## 🛠️ Tecnologías Utilizadas
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+-   **Framework**: Laravel 12.x
+-   **Base de Datos**: MySQL
+-   **Frontend**: Blade Templates, Tailwind CSS
+-   **Autenticación**: Laravel Breeze
+-   **Vite**: Para compilación de assets
 
-## Laravel Sponsors
+## 📋 Requisitos Previos
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+-   PHP >= 8.2
+-   Composer
+-   MySQL >= 5.7 o MariaDB >= 10.3
+-   Node.js >= 18.x
+-   NPM o Yarn
 
-### Premium Partners
+## 🚀 Instalación
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+1. **Clonar el repositorio**
 
-## Contributing
+    ```bash
+    git clone https://github.com/OowarriorwhiteoO/Pyme360-POS.git
+    cd Pyme360-POS
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2. **Instalar dependencias de PHP**
 
-## Code of Conduct
+    ```bash
+    composer install
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3. **Instalar dependencias de Node.js**
 
-## Security Vulnerabilities
+    ```bash
+    npm install
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+4. **Configurar el archivo de entorno**
 
-## License
+    ```bash
+    cp .env.example .env
+    ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5. **Generar la clave de la aplicación**
+
+    ```bash
+    php artisan key:generate
+    ```
+
+6. **Configurar la base de datos**
+
+    Edita el archivo `.env` y configura tus credenciales de base de datos:
+
+    ```env
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=pyme360_pos
+    DB_USERNAME=tu_usuario
+    DB_PASSWORD=tu_contraseña
+    ```
+
+7. **Ejecutar las migraciones**
+
+    ```bash
+    php artisan migrate
+    ```
+
+8. **Ejecutar los seeders (opcional)**
+
+    ```bash
+    php artisan db:seed
+    ```
+
+9. **Compilar los assets**
+
+    ```bash
+    npm run dev
+    ```
+
+10. **Iniciar el servidor de desarrollo**
+    ```bash
+    php artisan serve
+    ```
+
+La aplicación estará disponible en: `http://localhost:8000`
+
+## 📊 Estructura de la Base de Datos
+
+El sistema incluye las siguientes tablas principales:
+
+-   `users` - Usuarios del sistema
+-   `products` - Catálogo de productos
+-   `categories` - Categorías de productos
+-   `customers` - Clientes
+-   `sales` - Registro de ventas
+-   `sale_details` - Detalles de cada venta
+-   `inventory` - Control de stock
+
+## 🎯 Uso
+
+### Acceso al Sistema
+
+1. Accede a la aplicación en tu navegador
+2. Inicia sesión con tus credenciales
+3. Navega por el dashboard para acceder a las diferentes funcionalidades
+
+### Procesar una Venta
+
+1. Ve a la sección **"Ventas"**
+2. Selecciona o busca el cliente
+3. Agrega productos al carrito
+4. Selecciona el método de pago
+5. Confirma la venta
+
+### Gestionar Productos
+
+1. Accede a **"Productos"**
+2. Crea, edita o elimina productos
+3. Administra categorías y stock
+
+## 🤝 Contribuciones
+
+Las contribuciones son bienvenidas. Por favor:
+
+1. Haz un Fork del proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## 📝 Licencia
+
+Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+
+## 👨‍💻 Autor
+
+**OowarriorwhiteoO**
+
+-   GitHub: [@OowarriorwhiteoO](https://github.com/OowarriorwhiteoO)
+-   Email: warriorwhite@gmail.com
+
+## 🙏 Agradecimientos
+
+-   Laravel Framework
+-   Comunidad de código abierto
+-   Todos los contribuidores
+
+---
+
+⭐ Si este proyecto te ha sido útil, considera darle una estrella en GitHub!
