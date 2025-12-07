@@ -160,8 +160,7 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 
 **OowarriorwhiteoO**
 
--   GitHub: [@OowarriorwhiteoO](https://github.com/OowarriorwhiteoO)
--   Email: warriorwhite@gmail.com
+-   GitHub: [@OowarriorwhiteoO](https://github.com/OowarriorwhiteoO
 
 ## 🙏 Agradecimientos
 
