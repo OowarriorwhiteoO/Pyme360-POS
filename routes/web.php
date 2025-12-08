@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-// IMPORTANTE: Estas líneas traen tus controladores para que Laravel los encuentre
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,16 +12,21 @@ use App\Http\Controllers\DashboardController;
 |--------------------------------------------------------------------------
 */
 
-// Ruta Principal (Dashboard)
-Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+// Rutas de Autenticación (Públicas)
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// --- MÓDULO 1: INVENTARIO ---
-// Muestra la lista de productos y el buscador
-Route::get('/productos', [ProductController::class, 'index'])->name('products.index');
+// Rutas Protegidas (Requieren Autenticación)
+Route::middleware('auth')->group(function () {
 
-// --- MÓDULO 2: PUNTO DE VENTA (POS) ---
-// 1. Mostrar la pantalla de ventas (Caja)
-Route::get('/vender', [SaleController::class, 'create'])->name('sales.create');
+    // Dashboard (Ruta Principal)
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-// 2. Guardar la venta y descontar stock (Cuando aprietas el botón verde)
-Route::post('/vender', [SaleController::class, 'store'])->name('sales.store');
+    // MÓDULO 1: INVENTARIO
+    Route::get('/productos', [ProductController::class, 'index'])->name('products.index');
+
+    // MÓDULO 2: PUNTO DE VENTA (POS)
+    Route::get('/vender', [SaleController::class, 'create'])->name('sales.create');
+    Route::post('/vender', [SaleController::class, 'store'])->name('sales.store');
+});

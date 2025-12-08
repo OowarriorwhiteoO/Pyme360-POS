@@ -376,12 +376,244 @@
                                 this.notify('Error de conexión', 'error');
                                 this.showModal = false;
                             })
-                            .finally(() => {
-                                this.isLoading = false;
-                            });
+                            .finally(() => {}
+                                ">
+
+                                <
+                                div class = "inline-flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-lg": class =
+                                "{
+                                'text-green-500 bg-green-100': notif.type === 'success',
+                                'text-red-500 bg-red-100': notif.type === 'error',
+                                'text-yellow-500 bg-yellow-100': notif.type === 'warning'
+                            }
+                        "> <
+                        span x - show = "notif.type === 'success'" > ✔ < /span> <
+                            span x - show = "notif.type === 'error'" > ✕ < /span> <
+                            span x - show = "notif.type === 'warning'" > ⚠️ < /span> <
+                            /div> <
+                            div class = "pl-2 text-sm font-semibold text-gray-800"
+                        x - text = "notif.message" > < /div> <
+                            /div> <
+                            /template> <
+                            /div>
+
+                            <
+                            div x - show = "showModal"
+                        x - cloak
+                        class =
+                        "fixed inset-0 z-50 flex items-center justify-center bg-slate-900/70 backdrop-blur-sm transition-opacity"
+                        x - transition: enter = "transition ease-out duration-300"
+                        x - transition: enter - start = "opacity-0"
+                        x - transition: enter - end = "opacity-100"
+                        x - transition: leave = "transition ease-in duration-200"
+                        x - transition: leave - start = "opacity-100"
+                        x - transition: leave - end = "opacity-0" >
+
+                            <
+                            div class =
+                            "bg-white rounded-3xl shadow-2xl w-full max-w-md transform transition-all scale-100 p-8 border border-gray-100"
+                        @click.away = "!isLoading ? showModal = false : null" >
+
+                            <
+                            div class = "text-center mb-8" >
+                            <
+                            div
+                        class =
+                        "mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-green-50 border-4 border-green-100 mb-6 animate-bounce" >
+                        <
+                        span class = "text-4xl" > 💰 < /span> <
+                        /div> <
+                        h3 class = "text-2xl font-black text-gray-800 mb-2" > ¿Confirmar Pago ? < /h3> <
+                            p class = "text-gray-500 text-sm" > Se registrará la venta y se descontará el stock. < /p>
+
+                            <
+                            div class = "mt-6 p-4 bg-gray-50 rounded-xl border border-gray-200" >
+                            <
+                            p class = "text-xs text-gray-500 uppercase font-bold tracking-wider mb-1" > Monto Total < /p> <
+                            div class = "text-4xl font-black text-slate-800"
+                        x - text = "'$' + formatPrice(total)" > < /div> <
+                            /div> <
+                            /div>
+
+                            <
+                            div class = "flex gap-3" >
+                            <
+                            button @click = "showModal = false": disabled = "isLoading"
+                        class =
+                        "w-1/2 bg-white text-gray-700 hover:bg-red-50 hover:text-red-600 hover:border-red-200 font-bold py-3.5 px-4 rounded-xl transition duration-200 border-2 border-gray-200 focus:outline-none focus:ring-4 focus:ring-red-100" >
+                        Cancelar
+                            <
+                            /button>
+
+                            <
+                            button @click = "processSale()"
+                        class =
+                        "w-1/2 bg-green-600 text-white hover:bg-green-700 font-bold py-3.5 px-4 rounded-xl shadow-lg transition duration-200 flex justify-center items-center gap-2 focus:outline-none focus:ring-4 focus:ring-green-200 disabled:opacity-70 disabled:cursor-wait":
+                        disabled = "isLoading" >
+                            <
+                            span x - show = "!isLoading" > ✔Aceptar < /span> <
+                            svg x - show = "isLoading"
+                        class = "animate-spin h-5 w-5 text-white"
+                        xmlns = "http://www.w3.org/2000/svg"
+                        fill = "none"
+                        viewBox = "0 0 24 24" >
+                            <
+                            circle class = "opacity-25"
+                        cx = "12"
+                        cy = "12"
+                        r = "10"
+                        stroke = "currentColor"
+                        stroke - width = "4" > < /circle> <
+                            path class = "opacity-75"
+                        fill = "currentColor"
+                        d = "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" >
+                            <
+                            /path> <
+                            /svg> <
+                            /button> <
+                            /div> <
+                            /div> <
+                            /div>
+
+                            <
+                            script >
+                            function posApp() {
+                                return {
+                                    search: '',
+                                    products: @json($products),
+                                    cart: [],
+                                    isLoading: false,
+                                    showModal: false,
+                                    notifications: [], // Lista de notificaciones
+
+                                    // --- SISTEMA DE NOTIFICACIONES ---
+                                    notify(message, type = 'success') {
+                                        const id = Date.now();
+                                        this.notifications.push({
+                                            id,
+                                            message,
+                                            type,
+                                            show: true
+                                        });
+
+                                        // Auto-ocultar después de 3 segundos
+                                        setTimeout(() => {
+                                            const index = this.notifications.findIndex(n => n.id === id);
+                                            if (index !== -1) this.notifications.splice(index, 1);
+                                        }, 3000);
+                                    },
+                                    // ---------------------------------
+
+                                    get filteredProducts() {
+                                        if (this.search === '') return this.products;
+                                        return this.products.filter(p => {
+                                            const term = this.search.toLowerCase();
+                                            return p.name.toLowerCase().includes(term) ||
+                                                p.sku.toLowerCase().includes(term);
+                                        });
+                                    },
+
+                                    get total() {
+                                        return this.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+                                    },
+
+                                    addToCart(product) {
+                                        let existingItem = this.cart.find(item => item.id === product.id);
+
+                                        if (existingItem) {
+                                            if (existingItem.qty < product.stock) {
+                                                existingItem.qty++;
+                                                // Feedback sutil al aumentar
+                                            } else {
+                                                this.notify('⚠️ Stock máximo alcanzado (' + product.stock + ')', 'warning');
+                                            }
+                                        } else {
+                                            if (product.stock <= 0) {
+                                                this.notify('❌ Producto sin stock disponible', 'error');
+                                                return;
+                                            }
+                                            this.cart.push({
+                                                id: product.id,
+                                                name: product.name,
+                                                price: product.price_sale,
+                                                qty: 1,
+                                                stock: product.stock
+                                            });
+                                        }
+                                        this.search = '';
+                                    },
+
+                                    increaseQty(index) {
+                                        let item = this.cart[index];
+                                        if (item.qty < item.stock) {
+                                            item.qty++;
+                                        } else {
+                                            this.notify('⚠️ No hay más stock disponible', 'warning');
+                                        }
+                                    },
+
+                                    decreaseQty(index) {
+                                        let item = this.cart[index];
+                                        if (item.qty > 1) {
+                                            item.qty--;
+                                        }
+                                    },
+
+                                    removeFromCart(index) {
+                                        this.cart.splice(index, 1);
+                                    },
+
+                                    formatPrice(value) {
+                                        return new Intl.NumberFormat('es-CL').format(value);
+                                    },
+
+                                    openModal() {
+                                        if (this.cart.length > 0) {
+                                            this.showModal = true;
+                                        } else {
+                                            this.notify('El carrito está vacío', 'error');
+                                        }
+                                    },
+
+                                    processSale() {
+                                        this.isLoading = true;
+
+                                        fetch("{{ route('sales.store') }}", {
+                                                method: "POST",
+                                                headers: {
+                                                    "Content-Type": "application/json",
+                                                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                                                },
+                                                body: JSON.stringify({
+                                                    cart: this.cart
+                                                })
+                                            })
+                                            .then(response => response.json())
+                                            .then(data => {
+                                                if (data.success) {
+                                                    this.showModal = false;
+                                                    this.notify('✅ ¡Venta registrada exitosamente!', 'success');
+
+                                                    setTimeout(() => {
+                                                        window.location.reload();
+                                                    }, 1500); // Esperar un poco para que lea el mensaje
+                                                } else {
+                                                    this.notify('❌ Error: ' + data.message, 'error');
+                                                    this.showModal = false;
+                                                }
+                                            })
+                                            .catch(error => {
+                                                console.error('Error:', error);
+                                                this.notify('Error de conexión', 'error');
+                                                this.showModal = false;
+                                            })
+                                            .finally(() => {
+                                                this.isLoading = false;
+                                            });
+                                    }
+                                }
+                            }
                     }
-                }
-            }
         </script>
     </div>
 @endsection

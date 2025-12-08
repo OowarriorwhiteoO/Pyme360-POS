@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventario - Pyme360</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
+@section('title', 'Inventario - Pyme360')
 
-<body class="bg-gray-100 font-sans leading-normal tracking-normal">
-
+@section('content')
     <div class="container mx-auto px-4 py-8">
 
         <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
@@ -19,14 +12,12 @@
                 <input type="text" name="buscar" placeholder="Buscar por nombre o código..."
                     class="w-full px-4 py-2 rounded shadow border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value="{{ request('buscar') }}">
-                <button type="submit"
-                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow">
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow">
                     Buscar
                 </button>
             </form>
 
-            <button
-                class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow whitespace-nowrap">
+            <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow whitespace-nowrap">
                 + Nuevo
             </button>
         </div>
@@ -60,8 +51,7 @@
                                 {{ number_format($product->price_sale, 0, ',', '.') }}</td>
                             <td class="px-5 py-4 border-b border-gray-200 text-sm">
                                 @if ($product->stock < 5)
-                                    <span
-                                        class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs font-bold">Crítico:
+                                    <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs font-bold">Crítico:
                                         {{ $product->stock }}</span>
                                 @else
                                     <span
@@ -79,7 +69,4 @@
             </div>
         </div>
     </div>
-
-</body>
-
-</html>
+@endsection
