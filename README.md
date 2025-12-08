@@ -160,14 +160,3 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 
 **OowarriorwhiteoO**
 
--   GitHub: [@OowarriorwhiteoO](https://github.com/OowarriorwhiteoO
-
-## 🙏 Agradecimientos
-
--   Laravel Framework
--   Comunidad de código abierto
--   Todos los contribuidores
-
----
-
-⭐ Si este proyecto te ha sido útil, considera darle una estrella en GitHub!
