@@ -1,162 +1,268 @@
-# 🏪 Pyme360 POS
+# 🔩 Sistema POS - Ferretería Tornillo Dorado
 
-Sistema de Punto de Venta (POS) completo diseñado específicamente para pequeñas y medianas empresas. Desarrollado con Laravel, ofrece una solución moderna, intuitiva y eficiente para la gestión de ventas, inventario y reportes.
+Sistema de Punto de Venta (POS) desarrollado como proyecto académico para **AIEP** - Ramo: **TALLER DE PROYECTO DE ESPECIALIDAD**.
 
-![Laravel](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=flat&logo=laravel&logoColor=white)
-![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=flat&logo=php&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
+Aplicación web para gestión de inventario y ventas de la Ferretería Tornillo Dorado, desarrollada con Laravel 12 y PostgreSQL.
 
-## 📋 Descripción
+## 📋 Descripción del Proyecto
 
-Pyme360 POS es una aplicación web que permite gestionar de manera integral las operaciones diarias de un negocio, desde el registro de productos hasta la generación de reportes de ventas. Diseñado pensando en la facilidad de uso y la eficiencia operativa.
+Sistema completo de gestión para ferretería que incluye:
 
-## ✨ Características Principales
+-   **Punto de Venta (POS)** con interfaz intuitiva
+-   **Gestión de Inventario** con control de stock
+-   **Búsqueda en tiempo real** de productos
+-   **Registro de ventas** con descuento automático de stock
+-   **Dashboard** con métricas del negocio
 
--   🛒 **Gestión de Ventas**: Interfaz intuitiva para procesar ventas rápidamente
--   📦 **Control de Inventario**: Gestión completa de productos y stock
--   👥 **Administración de Clientes**: Base de datos de clientes con historial de compras
--   📊 **Dashboard Analítico**: Visualización de métricas clave del negocio
--   🧾 **Generación de Facturas**: Creación automática de documentos de venta
--   📈 **Reportes Detallados**: Informes de ventas, productos más vendidos y más
--   🔐 **Sistema de Autenticación**: Control de acceso seguro para usuarios
--   💰 **Múltiples Métodos de Pago**: Efectivo, tarjeta, transferencia, etc.
+## 🚀 Demo en Vivo
+
+🌐 **URL**: [https://pyme360-pos.onrender.com](https://pyme360-pos.onrender.com)
+
+> **Nota**: La aplicación está desplegada en Render con plan gratuito. El primer acceso puede tardar ~50 segundos mientras el servidor se activa.
 
 ## 🛠️ Tecnologías Utilizadas
 
--   **Framework**: Laravel 12.x
--   **Base de Datos**: MySQL
--   **Frontend**: Blade Templates, Tailwind CSS
--   **Autenticación**: Laravel Breeze
--   **Vite**: Para compilación de assets
+### Backend
 
-## 📋 Requisitos Previos
+-   **Laravel 12** - Framework PHP
+-   **PostgreSQL** - Base de datos relacional
+-   **PHP 8.2** - Lenguaje de programación
+
+### Frontend
+
+-   **Blade Templates** - Motor de plantillas de Laravel
+-   **Alpine.js** - Framework JavaScript reactivo
+-   **Tailwind CSS** - Framework de CSS
+
+### DevOps
+
+-   **Docker** - Contenedorización
+-   **Render.com** - Plataforma de deployment
+-   **GitHub** - Control de versiones
+
+## 📦 Estructura del Proyecto
+
+```
+Pyme360-POS/
+├── app/
+│   ├── Http/Controllers/    # Controladores de la aplicación
+│   └── Models/              # Modelos de datos (Product, Sale, User)
+├── database/
+│   ├── migrations/          # Migraciones de base de datos
+│   └── seeders/             # Datos de prueba
+├── resources/
+│   └── views/               # Vistas Blade
+│       ├── auth/            # Login y autenticación
+│       ├── sales/           # Punto de venta
+│       └── products/        # Gestión de inventario
+├── routes/
+│   └── web.php             # Definición de rutas
+├── Dockerfile              # Configuración Docker
+└── README.md
+```
+
+## 🎯 Funcionalidades Principales
+
+### 1. Autenticación
+
+-   Sistema de login seguro
+-   Sesiones protegidas con middleware
+-   Validación de credenciales
+
+### 2. Punto de Venta
+
+-   Búsqueda rápida de productos por nombre o SKU
+-   Carrito de compras interactivo
+-   Cálculo automático de totales
+-   Confirmación de venta con modal
+-   Descuento automático de stock
+
+### 3. Gestión de Inventario
+
+-   Vista completa del catálogo de productos
+-   Información de stock en tiempo real
+-   Categorización de productos
+-   Precios de costo y venta
+
+### 4. Dashboard
+
+-   Resumen de ventas
+-   Alertas de stock bajo
+-   Estadísticas del negocio
+
+## 💻 Instalación Local
+
+### Requisitos Previos
 
 -   PHP >= 8.2
 -   Composer
--   MySQL >= 5.7 o MariaDB >= 10.3
--   Node.js >= 18.x
--   NPM o Yarn
+-   PostgreSQL (o SQLite para desarrollo)
+-   Node.js (opcional, para assets)
 
-## 🚀 Instalación
+### Pasos de Instalación
 
 1. **Clonar el repositorio**
 
-    ```bash
-    git clone https://github.com/OowarriorwhiteoO/Pyme360-POS.git
-    cd Pyme360-POS
-    ```
+```bash
+git clone https://github.com/OowarriorwhiteoO/Pyme360-POS.git
+cd Pyme360-POS
+```
 
-2. **Instalar dependencias de PHP**
+2. **Instalar dependencias**
 
-    ```bash
-    composer install
-    ```
+```bash
+composer install
+```
 
-3. **Instalar dependencias de Node.js**
+3. **Configurar variables de entorno**
 
-    ```bash
-    npm install
-    ```
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-4. **Configurar el archivo de entorno**
+4. **Configurar base de datos** (editar `.env`)
 
-    ```bash
-    cp .env.example .env
-    ```
+```env
+DB_CONNECTION=sqlite
+# O para PostgreSQL:
+# DB_CONNECTION=pgsql
+# DB_HOST=127.0.0.1
+# DB_PORT=5432
+# DB_DATABASE=pyme360
+```
 
-5. **Generar la clave de la aplicación**
+5. **Ejecutar migraciones y seeders**
 
-    ```bash
-    php artisan key:generate
-    ```
+```bash
+php artisan migrate --seed
+```
 
-6. **Configurar la base de datos**
+6. **Iniciar servidor de desarrollo**
 
-    Edita el archivo `.env` y configura tus credenciales de base de datos:
+```bash
+php artisan serve
+```
 
-    ```env
-    DB_CONNECTION=mysql
-    DB_HOST=127.0.0.1
-    DB_PORT=3306
-    DB_DATABASE=pyme360_pos
-    DB_USERNAME=tu_usuario
-    DB_PASSWORD=tu_contraseña
-    ```
+7. **Acceder a la aplicación**
 
-7. **Ejecutar las migraciones**
+```
+http://localhost:8000
+```
 
-    ```bash
-    php artisan migrate
-    ```
+## 🗄️ Base de Datos
 
-8. **Ejecutar los seeders (opcional)**
+### Diagrama Entidad-Relación
 
-    ```bash
-    php artisan db:seed
-    ```
+```
+┌─────────────┐       ┌─────────────┐       ┌──────────────┐
+│   users     │       │    sales    │       │   products   │
+├─────────────┤       ├─────────────┤       ├──────────────┤
+│ id          │       │ id          │       │ id           │
+│ name        │       │ total       │       │ sku          │
+│ email       │       │ items_count │       │ name         │
+│ password    │       │ status      │       │ price_cost   │
+│ created_at  │       │ created_at  │       │ price_sale   │
+│ updated_at  │       └─────────────┘       │ stock        │
+└─────────────┘              │              │ stock_min    │
+                             │              │ category     │
+                             ▼              └──────────────┘
+                    ┌──────────────┐               │
+                    │ sale_details │               │
+                    ├──────────────┤               │
+                    │ id           │               │
+                    │ sale_id      │◄──────────────┘
+                    │ product_id   │
+                    │ quantity     │
+                    │ price        │
+                    │ subtotal     │
+                    └──────────────┘
+```
 
-9. **Compilar los assets**
+### Tablas Principales
 
-    ```bash
-    npm run dev
-    ```
+-   **users**: Usuarios del sistema
+-   **products**: Catálogo de productos
+-   **sales**: Cabecera de ventas
+-   **sale_details**: Detalle de productos vendidos
 
-10. **Iniciar el servidor de desarrollo**
-    ```bash
-    php artisan serve
-    ```
+## 🎨 Interfaz de Usuario
 
-La aplicación estará disponible en: `http://localhost:8000`
+### Diseño Responsivo
 
-## 📊 Estructura de la Base de Datos
+-   ✅ Desktop (1920x1080)
+-   ✅ Tablet (768x1024)
+-   ✅ Mobile (375x667)
 
-El sistema incluye las siguientes tablas principales:
+### Paleta de Colores
 
--   `users` - Usuarios del sistema
--   `products` - Catálogo de productos
--   `categories` - Categorías de productos
--   `customers` - Clientes
--   `sales` - Registro de ventas
--   `sale_details` - Detalles de cada venta
--   `inventory` - Control de stock
+-   **Principal**: Morado (`#7C3AED`) - Identidad de marca
+-   **Éxito**: Verde (`#10B981`) - Confirmaciones
+-   **Error**: Rojo (`#EF4444`) - Alertas
+-   **Neutro**: Grises - Contenido
 
-## 🎯 Uso
+## 🔒 Seguridad
 
-### Acceso al Sistema
+-   ✅ Protección CSRF en formularios
+-   ✅ Validación de datos en backend
+-   ✅ Sanitización de inputs
+-   ✅ Sesiones seguras
+-   ✅ Passwords hasheados (bcrypt)
+-   ✅ HTTPS en producción
 
-1. Accede a la aplicación en tu navegador
-2. Inicia sesión con tus credenciales
-3. Navega por el dashboard para acceder a las diferentes funcionalidades
+## 📊 Datos de Prueba
 
-### Procesar una Venta
+El seeder incluye:
 
-1. Ve a la sección **"Ventas"**
-2. Selecciona o busca el cliente
-3. Agrega productos al carrito
-4. Selecciona el método de pago
-5. Confirma la venta
+-   **1 usuario** administrador
+-   **300 productos** distribuidos en 10 categorías:
+    -   Herramientas Manuales
+    -   Herramientas Eléctricas
+    -   Fijaciones
+    -   Pinturas y Accesorios
+    -   Plomería
+    -   Electricidad
+    -   Seguridad
+    -   Medición
+    -   Adhesivos
+    -   Jardinería
 
-### Gestionar Productos
+## 🚢 Deployment
 
-1. Accede a **"Productos"**
-2. Crea, edita o elimina productos
-3. Administra categorías y stock
+### Plataforma: Render.com
 
-## 🤝 Contribuciones
+La aplicación está desplegada usando Docker en Render con:
 
-Las contribuciones son bienvenidas. Por favor:
+-   **Runtime**: PHP 8.2 en contenedor Docker
+-   **Base de Datos**: PostgreSQL (gestionada por Render)
+-   **Auto-deploy**: Activado en rama `main`
 
-1. Haz un Fork del proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+### Variables de Entorno Requeridas
+
+```env
+APP_KEY=               # Generado con php artisan key:generate
+APP_ENV=production
+APP_DEBUG=false
+DB_CONNECTION=pgsql
+DB_HOST=               # Provisto por Render
+DB_DATABASE=           # Provisto por Render
+DB_USERNAME=           # Provisto por Render
+DB_PASSWORD=           # Provisto por Render
+```
 
 ## 📝 Licencia
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+Este proyecto fue desarrollado con fines educativos como parte del ramo **TALLER DE PROYECTO DE ESPECIALIDAD** en **AIEP**.
 
 ## 👨‍💻 Autor
 
-**OowarriorwhiteoO**
+Proyecto desarrollado para:
 
+-   **Instituto**: AIEP
+-   **Ramo**: Taller de Proyecto de Especialidad
+-   **Cliente**: Ferretería Tornillo Dorado
+-   **Año**: 2025
+
+---
+
+**Nota**: Este es un proyecto académico desarrollado para demostrar conocimientos en desarrollo web full-stack con Laravel y despliegue en producción.

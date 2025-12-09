@@ -7,11 +7,31 @@ use App\Models\User;
 use App\Models\Product;
 use Illuminate\Support\Facades\Hash;
 
+/**
+ * Seeder Principal de la Base de Datos
+ * 
+ * Puebla la base de datos con datos iniciales para el sistema:
+ * - Usuario administrador del sistema
+ * - 300 productos de ferretería organizados en 10 categorías
+ */
 class DatabaseSeeder extends Seeder
 {
+    /**
+     * Ejecutar el seeder
+     * 
+     * Este método se ejecuta con el comando: php artisan db:seed
+     * Crea el usuario admin y todos los productos del catálogo.
+     * 
+     * @return void
+     */
     public function run(): void
     {
-        // Crear usuario admin
+        // ==========================================
+        // CREAR USUARIO ADMINISTRADOR
+        // ==========================================
+
+        // firstOrCreate: solo crea si no existe un usuario con ese email
+        // Esto evita duplicados al ejecutar el seeder múltiples veces
         User::firstOrCreate(
             ['email' => 'admin@tornillodorado.cl'],
             [
@@ -22,7 +42,12 @@ class DatabaseSeeder extends Seeder
 
         echo "✅ Usuario admin creado\n";
 
-        // Definir categorías y productos base
+        // ==========================================
+        // DEFINIR CATÁLOGO DE PRODUCTOS
+        // ==========================================
+
+        // Estructura: 'Categoría' => [['Producto', precio_min, precio_max], ...]
+        // Los precios se usarán para generar variaciones aleatorias
         $categorias = [
             'Herramientas Manuales' => [
                 ['Martillo', 5000, 15000],
@@ -146,37 +171,51 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
+        // Arrays para generar variaciones de productos
         $marcas = ['Stanley', 'Truper', 'Bosch', 'Makita', 'Black+Decker', 'DeWalt', 'Bellota', 'Bremen', 'Urrea', 'Silverline'];
         $tipos = ['Profesional', 'Premium', 'Hogar', 'Industrial', 'Compacto', 'Reforzado', 'Standard', 'Plus', 'Pro', 'Max'];
 
-        $count = 0;
-        $sku_counter = 1;
+        // ==========================================
+        // GENERAR PRODUCTOS
+        // ==========================================
 
+        $count = 0;         // Contador de productos creados
+        $sku_counter = 1;   // Contador para generar SKUs únicos
+
+        // Recorrer cada categoría
         foreach ($categorias as $categoria => $productos_base) {
-            foreach ($productos_base as $producto_info) {
-                $nombre_base = $producto_info[0];
-                $costo_min = $producto_info[1];
-                $costo_max = $producto_info[2];
 
-                // Crear 3 variantes de cada producto base
+            // Recorrer cada tipo de producto en la categoría
+            foreach ($productos_base as $producto_info) {
+                $nombre_base = $producto_info[0]; // Ej: "Martillo"
+                $costo_min = $producto_info[1];   // Precio mínimo
+                $costo_max = $producto_info[2];   // Precio máximo
+
+                // Crear 3 variantes de cada producto (diferentes marcas/tipos)
                 for ($i = 0; $i < 3; $i++) {
+                    // Seleccionar marca y tipo al azar
                     $marca = $marcas[array_rand($marcas)];
                     $tipo = $tipos[array_rand($tipos)];
 
+                    // Generar precio aleatorio en el rango definido
                     $costo = rand($costo_min, $costo_max);
-                    $venta = (int)($costo * 1.4); // 40% ganancia
 
+                    // Calcular precio de venta (40% de ganancia)
+                    $venta = (int)($costo * 1.4);
+
+                    // Generar SKU único (ej: MAR-0001)
                     $sku = strtoupper(substr($nombre_base, 0, 3)) . '-' . str_pad($sku_counter, 4, '0', STR_PAD_LEFT);
 
+                    // Crear el producto en la base de datos
                     Product::firstOrCreate(
-                        ['sku' => $sku],
+                        ['sku' => $sku], // Verificar que no exista el SKU
                         [
-                            'name' => "$nombre_base $marca $tipo",
+                            'name' => "$nombre_base $marca $tipo", // Ej: "Martillo Stanley Profesional"
                             'description' => "Producto de ferretería de alta calidad categoria $categoria",
                             'price_cost' => $costo,
                             'price_sale' => $venta,
-                            'stock' => rand(5, 100),
-                            'stock_min' => 5,
+                            'stock' => rand(5, 100),  // Stock aleatorio entre 5 y 100 unidades
+                            'stock_min' => 5,         // Stock mínimo para alertas
                             'category' => $categoria,
                         ]
                     );
@@ -184,9 +223,9 @@ class DatabaseSeeder extends Seeder
                     $sku_counter++;
                     $count++;
 
-                    // Detener al llegar a 300
+                    // Detener al llegar a 300 productos
                     if ($count >= 300) {
-                        break 3;
+                        break 3; // Salir de los 3 bucles anidados
                     }
                 }
             }
