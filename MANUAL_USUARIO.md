@@ -67,8 +67,6 @@ Al acceder al sistema, verás la página de inicio de sesión con:
 
 1. **Email o Usuario**: Ingresa tu correo electrónico
 
-    - Ejemplo: `admin@tornillodorado.cl`
-
 2. **Contraseña**: Ingresa tu contraseña
 
     - La contraseña está oculta por seguridad
