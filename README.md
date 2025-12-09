@@ -265,4 +265,4 @@ Proyecto desarrollado para:
 
 ---
 
-**Nota**: Este es un proyecto académico desarrollado para demostrar conocimientos en desarrollo web full-stack con Laravel y despliegue en producción.
+**Nota**: Este es un proyecto académico desarrollado para demostrar conocimientos en desarrollo web full-stack y despliegue en producción.
