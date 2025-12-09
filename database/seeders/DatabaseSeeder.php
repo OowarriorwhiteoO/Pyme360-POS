@@ -20,77 +20,178 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        echo "✅ Usuario admin creado: admin@tornillodorado.cl\n";
+        echo "✅ Usuario admin creado\n";
 
-        // Crear productos de ferretería (sin Faker)
-        $productos = [
-            // Martillos
-            ['sku' => 'MAR-0001', 'name' => 'Martillo Stanley Profesional', 'price_cost' => 8500, 'price_sale' => 12000, 'stock' => 25],
-            ['sku' => 'MAR-0002', 'name' => 'Martillo Truper Premium', 'price_cost' => 7200, 'price_sale' => 10000, 'stock' => 30],
-            ['sku' => 'MAR-0003', 'name' => 'Martillo Makita Hogar', 'price_cost' => 6800, 'price_sale' => 9500, 'stock' => 20],
-
-            // Destornilladores
-            ['sku' => 'DES-0001', 'name' => 'Destornillador Stanley Plano', 'price_cost' => 2500, 'price_sale' => 3500, 'stock' => 50],
-            ['sku' => 'DES-0002', 'name' => 'Destornillador Phillips Truper', 'price_cost' => 2800, 'price_sale' => 4000, 'stock' => 45],
-            ['sku' => 'DES-0003', 'name' => 'Set Destornilladores Bosch 6 Piezas', 'price_cost' => 12000, 'price_sale' => 17000, 'stock' => 15],
-
-            // Llaves
-            ['sku' => 'LLA-0001', 'name' => 'Llave Inglesa 12 pulgadas', 'price_cost' => 9500, 'price_sale' => 13500, 'stock' => 18],
-            ['sku' => 'LLA-0002', 'name' => 'Set Llaves Allen Métricas', 'price_cost' => 5500, 'price_sale' => 7800, 'stock' => 22],
-            ['sku' => 'LLA-0003', 'name' => 'Llave Francesa Ajustable 10"', 'price_cost' => 8200, 'price_sale' => 11500, 'stock' => 16],
-
-            // Taladros
-            ['sku' => 'TAL-0001', 'name' => 'Taladro Percutor Bosch 13mm', 'price_cost' => 45000, 'price_sale' => 63000, 'stock' => 8],
-            ['sku' => 'TAL-0002', 'name' => 'Taladro Inalámbrico Black+Decker', 'price_cost' => 38000, 'price_sale' => 53000, 'stock' => 12],
-            ['sku' => 'TAL-0003', 'name' => 'Taladro Manual Stanley', 'price_cost' => 15000, 'price_sale' => 21000, 'stock' => 10],
-
-            // Sierras
-            ['sku' => 'SIE-0001', 'name' => 'Sierra Caladora Makita 400W', 'price_cost' => 42000, 'price_sale' => 59000, 'stock' => 6],
-            ['sku' => 'SIE-0002', 'name' => 'Sierra de Mano Para Madera', 'price_cost' => 6500, 'price_sale' => 9000, 'stock' => 28],
-            ['sku' => 'SIE-0003', 'name' => 'Sierra Circular 7 1/4 pulgadas', 'price_cost' => 55000, 'price_sale' => 77000, 'stock' => 5],
-
-            // Clavos y Tornillos
-            ['sku' => 'TOR-0001', 'name' => 'Tornillos Madera 2" x 100 unidades', 'price_cost' => 1500, 'price_sale' => 2100, 'stock' => 100],
-            ['sku' => 'TOR-0002', 'name' => 'Tornillos Yeso 1.5" x 200 unidades', 'price_cost' => 2200, 'price_sale' => 3100, 'stock' => 85],
-            ['sku' => 'CLA-0001', 'name' => 'Clavos Acero 3" x 500g', 'price_cost' => 2800, 'price_sale' => 3900, 'stock' => 60],
-            ['sku' => 'CLA-0002', 'name' => 'Clavos Para Concreto x 100 unidades', 'price_cost' => 3500, 'price_sale' => 4900, 'stock' => 42],
-
-            // Brocas
-            ['sku' => 'BRO-0001', 'name' => 'Set Brocas Metal 13 Piezas', 'price_cost' => 8500, 'price_sale' => 12000, 'stock' => 20],
-            ['sku' => 'BRO-0002', 'name' => 'Broca Concreto 8mm', 'price_cost' => 1800, 'price_sale' => 2500, 'stock' => 55],
-            ['sku' => 'BRO-0003', 'name' => 'Broca Madera 12mm', 'price_cost' => 1500, 'price_sale' => 2100, 'stock' => 48],
-
-            // Cintas y Adhesivos
-            ['sku' => 'CIN-0001', 'name' => 'Cinta Métrica 5 metros Stanley', 'price_cost' => 5500, 'price_sale' => 7700, 'stock' => 35],
-            ['sku' => 'CIN-0002', 'name' => 'Cinta Aislante Negra 3M', 'price_cost' => 1200, 'price_sale' => 1700, 'stock' => 75],
-            ['sku' => 'CIN-0003', 'name' => 'Cinta Masking Tape 2 pulgadas', 'price_cost' => 1800, 'price_sale' => 2500, 'stock' => 62],
-
-            // Pinturas y Brochas
-            ['sku' => 'PIN-0001', 'name' => 'Pintura Látex Blanco 1 Galón', 'price_cost' => 12000, 'price_sale' => 17000, 'stock' => 14],
-            ['sku' => 'PIN-0002', 'name' => 'Brocha 3 pulgadas Profesional', 'price_cost' => 3500, 'price_sale' => 4900, 'stock' => 28],
-            ['sku' => 'PIN-0003', 'name' => 'Rodillo Para Pintura + Bandeja', 'price_cost' => 4200, 'price_sale' => 5900, 'stock' => 22],
-
-            // Candados y Cerraduras
-            ['sku' => 'CAN-0001', 'name' => 'Candado Yale 40mm', 'price_cost' => 6500, 'price_sale' => 9100, 'stock' => 18],
-            ['sku' => 'CAN-0002', 'name' => 'Cerradura Puerta Entrada', 'price_cost' => 15000, 'price_sale' => 21000, 'stock' => 12],
-            ['sku' => 'CAN-0003', 'name' => 'Candado Combinación 50mm', 'price_cost' => 7800, 'price_sale' => 11000, 'stock' => 15],
+        // Definir categorías y productos base
+        $categorias = [
+            'Herramientas Manuales' => [
+                ['Martillo', 5000, 15000],
+                ['Destornillador', 2000, 6000],
+                ['Llave', 3000, 10000],
+                ['Alicate', 4000, 12000],
+                ['Cincel', 2500, 7000],
+                ['Espátula', 1500, 4500],
+                ['Nivel', 6000, 18000],
+                ['Serrucho', 5500, 16000],
+                ['Lima', 2000, 6000],
+                ['Tenaza', 4500, 13000],
+            ],
+            'Herramientas Eléctricas' => [
+                ['Taladro', 30000, 90000],
+                ['Amoladora', 35000, 105000],
+                ['Sierra Circular', 40000, 120000],
+                ['Sierra Caladora', 32000, 96000],
+                ['Lijadora', 28000, 84000],
+                ['Rotomartillo', 50000, 150000],
+                ['Esmeril', 25000, 75000],
+                ['Atornillador Eléctrico', 22000, 66000],
+                ['Pistola de Calor', 18000, 54000],
+                ['Compresor', 60000, 180000],
+            ],
+            'Fijaciones' => [
+                ['Tornillos Madera', 800, 2400],
+                ['Tornillos Metal', 1000, 3000],
+                ['Tornillos Yeso', 700, 2100],
+                ['Clavos Acero', 600, 1800],
+                ['Clavos Cemento', 1200, 3600],
+                ['Pernos', 1500, 4500],
+                ['Tuercas', 500, 1500],
+                ['Arandelas', 300, 900],
+                ['Remaches', 1000, 3000],
+                ['Tarugos', 400, 1200],
+            ],
+            'Pinturas y Accesorios' => [
+                ['Pintura Látex', 10000, 30000],
+                ['Pintura Esmalte', 12000, 36000],
+                ['Barniz', 8000, 24000],
+                ['Thinner', 3000, 9000],
+                ['Brocha', 2000, 6000],
+                ['Rodillo', 3500, 10500],
+                ['Bandeja Para Pintura', 1500, 4500],
+                ['Lija', 500, 1500],
+                ['Masilla', 2500, 7500],
+                ['Sellador', 6000, 18000],
+            ],
+            'Plomería' => [
+                ['Llave Paso', 3000, 9000],
+                ['Tubo PVC', 2000, 6000],
+                ['Codo PVC', 500, 1500],
+                ['T PVC', 700, 2100],
+                ['Sifón', 4000, 12000],
+                ['Manguera', 2500, 7500],
+                ['Abrazadera', 600, 1800],
+                ['Teflón', 300, 900],
+                ['Soldadura PVC', 2000, 6000],
+                ['Válvula', 5000, 15000],
+            ],
+            'Electricidad' => [
+                ['Cable Eléctrico', 1500, 4500],
+                ['Enchufe', 1000, 3000],
+                ['Interruptor', 1200, 3600],
+                ['Ampolleta LED', 3000, 9000],
+                ['Tubo Fluorescente', 4000, 12000],
+                ['Caja Derivación', 800, 2400],
+                ['Cinta Aislante', 1000, 3000],
+                ['Fusible', 500, 1500],
+                ['Tomacorriente', 2000, 6000],
+                ['Timer Eléctrico', 6000, 18000],
+            ],
+            'Seguridad' => [
+                ['Candado', 5000, 15000],
+                ['Cerradura', 8000, 24000],
+                ['Cadena', 4000, 12000],
+                ['Chapa', 6000, 18000],
+                ['Manilla', 3000, 9000],
+                ['Bisagra', 1500, 4500],
+                ['Cerrojo', 2500, 7500],
+                ['Picaporte', 2000, 6000],
+                ['Aldaba', 3500, 10500],
+                ['Mirilla', 1800, 5400],
+            ],
+            'Medición' => [
+                ['Cinta Métrica', 3000, 9000],
+                ['Nivel Láser', 25000, 75000],
+                ['Nivel Burbuja', 4000, 12000],
+                ['Escuadra', 2500, 7500],
+                ['Calibrador', 8000, 24000],
+                ['Huincha', 2000, 6000],
+                ['Plomada', 1500, 4500],
+                ['Goniómetro', 6000, 18000],
+                ['Transportador', 1000, 3000],
+                ['Compás', 2500, 7500],
+            ],
+            'Adhesivos' => [
+                ['Silicona', 2000, 6000],
+                ['Cola Fría', 1500, 4500],
+                ['Pegamento', 1000, 3000],
+                ['Cemento Contacto', 3000, 9000],
+                ['Adhesivo Montaje', 3500, 10500],
+                ['Cinta Doble Faz', 1200, 3600],
+                ['Superbonder', 2500, 7500],
+                ['Masking Tape', 800, 2400],
+                ['Cinta Scotch', 600, 1800],
+                ['Cinta Duct Tape', 2000, 6000],
+            ],
+            'Jardinería' => [
+                ['Pala', 6000, 18000],
+                ['Rastrillo', 5000, 15000],
+                ['Tijera Podar', 7000, 21000],
+                ['Manguera Jardín', 8000, 24000],
+                ['Regadera', 3000, 9000],
+                ['Guantes Jardín', 2000, 6000],
+                ['Semillas', 1000, 3000],
+                ['Fertilizante', 4000, 12000],
+                ['Maceta', 2500, 7500],
+                ['Tierra Abono', 3000, 9000],
+            ],
         ];
 
-        foreach ($productos as $prod) {
-            Product::firstOrCreate(
-                ['sku' => $prod['sku']],
-                [
-                    'name' => $prod['name'],
-                    'description' => 'Producto de ferretería de alta calidad.',
-                    'price_cost' => $prod['price_cost'],
-                    'price_sale' => $prod['price_sale'],
-                    'stock' => $prod['stock'],
-                    'stock_min' => 5,
-                    'category' => 'Herramientas',
-                ]
-            );
+        $marcas = ['Stanley', 'Truper', 'Bosch', 'Makita', 'Black+Decker', 'DeWalt', 'Bellota', 'Bremen', 'Urrea', 'Silverline'];
+        $tipos = ['Profesional', 'Premium', 'Hogar', 'Industrial', 'Compacto', 'Reforzado', 'Standard', 'Plus', 'Pro', 'Max'];
+
+        $count = 0;
+        $sku_counter = 1;
+
+        foreach ($categorias as $categoria => $productos_base) {
+            foreach ($productos_base as $producto_info) {
+                $nombre_base = $producto_info[0];
+                $costo_min = $producto_info[1];
+                $costo_max = $producto_info[2];
+
+                // Crear 3 variantes de cada producto base
+                for ($i = 0; $i < 3; $i++) {
+                    $marca = $marcas[array_rand($marcas)];
+                    $tipo = $tipos[array_rand($tipos)];
+
+                    $costo = rand($costo_min, $costo_max);
+                    $venta = (int)($costo * 1.4); // 40% ganancia
+
+                    $sku = strtoupper(substr($nombre_base, 0, 3)) . '-' . str_pad($sku_counter, 4, '0', STR_PAD_LEFT);
+
+                    Product::firstOrCreate(
+                        ['sku' => $sku],
+                        [
+                            'name' => "$nombre_base $marca $tipo",
+                            'description' => "Producto de ferretería de alta calidad categoria $categoria",
+                            'price_cost' => $costo,
+                            'price_sale' => $venta,
+                            'stock' => rand(5, 100),
+                            'stock_min' => 5,
+                            'category' => $categoria,
+                        ]
+                    );
+
+                    $sku_counter++;
+                    $count++;
+
+                    // Detener al llegar a 300
+                    if ($count >= 300) {
+                        break 3;
+                    }
+                }
+            }
         }
 
-        echo "✅ " . count($productos) . " productos creados\n";
+        echo "✅ $count productos creados\n";
     }
 }
