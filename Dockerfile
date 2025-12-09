@@ -26,5 +26,5 @@ EXPOSE 8080
 
 # Comando de inicio
 CMD php artisan migrate --force && \
-    php artisan db:seed --force && \
+    (php artisan db:seed --force || echo "Seeding skipped or failed, continuing...") && \
     php artisan serve --host=0.0.0.0 --port=8080
