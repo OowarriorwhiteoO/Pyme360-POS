@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
 
     // MÓDULO 1: INVENTARIO
     Route::get('/productos', [ProductController::class, 'index'])->name('products.index');
+    Route::post('/productos', [ProductController::class, 'store'])->name('products.store');
 
     // MÓDULO 2: PUNTO DE VENTA (POS)
     Route::get('/vender', [SaleController::class, 'create'])->name('sales.create');
